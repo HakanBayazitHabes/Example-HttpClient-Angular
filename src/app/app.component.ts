@@ -11,12 +11,14 @@ import { JsonplaceholderService } from './services/jsonplaceholder.service';
 })
 export class AppComponent implements OnInit {
   postList: Post[] = [];
+  isLoadingShow: boolean = true;
 
   constructor(private jsonPlaceHolderService: JsonplaceholderService) {}
 
   ngOnInit(): void {
     this.jsonPlaceHolderService.getPostList().subscribe((x) => {
       this.postList = x;
+      this.isLoadingShow = false;
     });
   }
 }
