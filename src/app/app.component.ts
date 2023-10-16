@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private jsonPlaceHolderService: JsonplaceholderService) {}
 
   ngOnInit(): void {
-    this.jsonPlaceHolderService.getPostList().subscribe((x) => {
+    this.jsonPlaceHolderService.getPostList(1,5).subscribe((x) => {
       this.postList = x;
       this.isLoadingShow = false;
     });

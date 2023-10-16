@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post';
-import { catchError } from 'rxjs';
+import { catchError, from, mergeMap, skip, take, toArray } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +9,15 @@ import { catchError } from 'rxjs';
 export class JsonplaceholderService {
   constructor(private http: HttpClient) {}
 
-  getPostList() {
-    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts');
+  getPostList(page: number, pageSize: number) {
+    return this.http
+      .get<Post[]>('https://jsonplaceholder.typicode.com/posts')
+      .pipe(
+        mergeMap((x) => from(x)),
+        skip((page - 1) * pageSize),
+        take(pageSize),
+        toArray()
+      );
   }
 
   getPost(id: number) {

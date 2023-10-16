@@ -12,7 +12,7 @@ export class OrnekComponent implements OnInit {
   constructor(private jsonPlaceHolderService: JsonplaceholderService) {}
 
   ngOnInit(): void {
-    this.jsonPlaceHolderService.getPost(222).subscribe({
+    this.jsonPlaceHolderService.getPost(2).subscribe({
       next: (x) => (this.post = x),
       error: (e) => console.warn(e),
       complete: () => console.log('istek tamamlandı'),
