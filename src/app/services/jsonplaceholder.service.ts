@@ -10,16 +10,15 @@ export class JsonplaceholderService {
   constructor(private http: HttpClient) {}
 
   getPostList() {
-    return this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts');
+    return this.http.get<any[]>('https://jsonplaceholder.typicode.com/posts');
   }
 
   getPost(id: number) {
-    return this.http
-      .get<Post>(`https://jsonplaceholder.typicode.com/posts/${id}`)
-      .pipe(
-        catchError((e) => {
-          throw new Error('Data bulunamadı');
-        })
-      );
+    return this.http.get<Post>(
+      `https://jsonplaceholder.typicode.com/posts/${id}`,
+      {
+        observe: 'response',
+      }
+    );
   }
 }

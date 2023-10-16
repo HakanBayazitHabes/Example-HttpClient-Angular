@@ -13,7 +13,7 @@ export class OrnekComponent implements OnInit {
 
   ngOnInit(): void {
     this.jsonPlaceHolderService.getPost(222).subscribe({
-      next: (x) => (this.post = x),
+      next: (x) => console.log(x),
       error: (e: Error) => console.warn(`Hata : ${e.message}`),
       complete: () => console.log('istek tamamlandı'),
     });
