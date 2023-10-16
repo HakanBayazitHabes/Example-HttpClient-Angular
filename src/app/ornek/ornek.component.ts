@@ -12,8 +12,8 @@ export class OrnekComponent implements OnInit {
   constructor(private jsonPlaceHolderService: JsonplaceholderService) {}
 
   ngOnInit(): void {
-    this.jsonPlaceHolderService.getPost(222).subscribe({
-      next: (x) => console.log(x),
+    this.jsonPlaceHolderService.getPost(2).subscribe({
+      next: (x) => console.log(x.body),
       error: (e: Error) => console.warn(`Hata : ${e.message}`),
       complete: () => console.log('istek tamamlandı'),
     });
