@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'; // Added import statement
-import { AppRoutingModule } from './app-routing.module'; // Changed import statement
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrnekComponent } from './ornek/ornek.component';
-
-
+import { TokenInterceptor } from './interceptor/token.interceptor'; // Added import statement
+import { CustomerrorInterceptor } from './interceptor/customerror.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    OrnekComponent
+  declarations: [AppComponent, OrnekComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, // Added provider for TokenInterceptor
+    { provide: HTTP_INTERCEPTORS, useClass: CustomerrorInterceptor, multi: true },
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule // Added HttpClientModule to imports array
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
