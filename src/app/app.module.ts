@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; // Added import statement
 import { AppRoutingModule } from './app-routing.module'; // Changed import statement
 import { AppComponent } from './app.component';
+import { OrnekComponent } from './ornek/ornek.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OrnekComponent
   ],
   imports: [
     BrowserModule,
