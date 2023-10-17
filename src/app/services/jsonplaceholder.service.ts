@@ -32,7 +32,7 @@ export class JsonplaceholderService {
         mergeMap((x) => from(x)),
         skip((page - 1) * pageSize),
         take(pageSize),
-        map((x) => `${x.id}-${x.userId}`),
+        map((x) => `${x.id}-${x.userId}-${x.title}`),
         toArray()
       );
   }

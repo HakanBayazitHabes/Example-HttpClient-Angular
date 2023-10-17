@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { JsonplaceholderService } from 'src/app/services/jsonplaceholder.service';
 
 @Component({
@@ -7,11 +8,8 @@ import { JsonplaceholderService } from 'src/app/services/jsonplaceholder.service
   styleUrls: ['./b.component.css'],
 })
 export class BComponent implements OnInit {
-  currency: string | undefined;
-  constructor(private jsonPlaceHolderService: JsonplaceholderService) {}
+  constructor(private route: ActivatedRoute) {}
   ngOnInit(): void {
-    this.jsonPlaceHolderService.currencyObservable.subscribe((x) => {
-      this.currency = x;
-    });
+    console.log(this.route.snapshot.data['postList']);
   }
 }
