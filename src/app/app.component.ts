@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './models/user';
 import { Post } from './models/post';
 import { JsonplaceholderService } from './services/jsonplaceholder.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,14 @@ import { JsonplaceholderService } from './services/jsonplaceholder.service';
 export class AppComponent implements OnInit {
   postList: string[] = [];
   isLoadingShow: boolean = true;
+  currencyList: string[] = ['Türk Lirası', 'Dolar'];
+  selectCurrency = new FormControl('Türk Lirası');
 
   constructor(private jsonPlaceHolderService: JsonplaceholderService) {}
 
   ngOnInit(): void {
-    this.jsonPlaceHolderService.getPostList(1,5).subscribe((x) => {
-      this.postList = x;
-      this.isLoadingShow = false;
+    this.selectCurrency.valueChanges.subscribe((x) => {
+      console.log(x);
     });
   }
 }

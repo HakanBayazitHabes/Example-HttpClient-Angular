@@ -1,19 +1,9 @@
-<h2>Ana Component</h2>
-<app-search></app-search>
-<app-ornek></app-ornek>
+<select [formControl]="selectCurrency">
+  <option *ngFor="let item of currencyList" value="{{item}}">{{item}}</option>
+</select>
+
+<app-a></app-a>
 <hr>
-
-<div *ngIf="isLoadingShow">
-  <div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-</div>
-
-<div class="alert alert-info" *ngFor="let post of postList">
-  {{post}}
-</div>
-
+<app-b></app-b>
 
 <router-outlet></router-outlet>
