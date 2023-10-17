@@ -1,7 +1,16 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post';
-import { catchError, from, mergeMap, skip, take, toArray } from 'rxjs';
+import {
+  catchError,
+  filter,
+  from,
+  map,
+  mergeMap,
+  skip,
+  take,
+  toArray,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +25,7 @@ export class JsonplaceholderService {
         mergeMap((x) => from(x)),
         skip((page - 1) * pageSize),
         take(pageSize),
+        map((x) => `${x.id}-${x.userId}`),
         toArray()
       );
   }
@@ -24,5 +34,16 @@ export class JsonplaceholderService {
     return this.http.get<Post>(
       `https://jsonplaceholder.typicode.com/posts/${id}`
     );
+  }
+
+  getUserWithSearch(searchText: string) {
+    return this.http
+      .get<any[]>('https://jsonplaceholder.typicode.com/users')
+      .pipe(
+        mergeMap((x) => from(x)),
+        filter((x) => x.name.toLowerCase().includes(searchText.toLowerCase())),
+        map((x) => x.name),
+        toArray()
+      );
   }
 }

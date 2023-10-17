@@ -10,7 +10,7 @@ import { JsonplaceholderService } from './services/jsonplaceholder.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  postList: Post[] = [];
+  postList: string[] = [];
   isLoadingShow: boolean = true;
 
   constructor(private jsonPlaceHolderService: JsonplaceholderService) {}
