@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectCurrency.valueChanges.subscribe((x) => {
-      console.log(x);
+      this.jsonPlaceHolderService.setcurrency(x);
     });
   }
 }

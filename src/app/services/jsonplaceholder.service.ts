@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../models/post';
 import {
+  BehaviorSubject,
   catchError,
   filter,
   from,
@@ -17,6 +18,12 @@ import {
 })
 export class JsonplaceholderService {
   constructor(private http: HttpClient) {}
+
+  public currencyObservable = new BehaviorSubject('Türk Lirası');
+
+  setcurrency(val: any) {
+    this.currencyObservable.next(val);
+  }
 
   getPostList(page: number, pageSize: number) {
     return this.http
